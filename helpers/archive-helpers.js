@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
-var download = require('download');
+// var download = require('download');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -27,9 +27,16 @@ exports.initialize = function(pathsObj) {
 // modularize your code. Keep it clean!
 
 exports.readListOfUrls = function() {
+  var urlArray = [];
+  fs.readFile(this.paths.list, 'utf-8', function(err, data) {
+    if (err) {
+      throw err;
+    }
+  });
 };
 
 exports.isUrlInList = function() {
+  this.readListOfUrls();
 };
 
 exports.addUrlToList = function() {

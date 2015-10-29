@@ -26,8 +26,11 @@ var actions = {
 
 exports.handleRequest = function (req, res) {
   var action = req.method;
-
   if (action) {
     actions[action](req, res);
+  } else {
+    res.writeHead(400, null);
+    res.end();
   }
+  archive.readListOfUrls();
 }; 
