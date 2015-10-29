@@ -29,8 +29,7 @@ exports.handleRequest = function (req, res) {
   if (action) {
     actions[action](req, res);
   } else {
-    res.writeHead(400, null);
+    res.writeHead(404, null);
     res.end();
   }
-  archive.readListOfUrls();
 }; 
