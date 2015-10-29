@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
+var download = require('download');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -35,7 +36,9 @@ exports.addUrlToList = function() {
 };
 
 exports.isUrlArchived = function() {
+  // check if website html is already in database
 };
 
 exports.downloadUrls = function() {
+  // download website
 };
