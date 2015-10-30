@@ -2,14 +2,15 @@ var path = require('path');
 var archive = require('../helpers/archive-helpers');
 // require more modules/folders here!
 var httpHelper = require('./http-helpers');
+var htmlFetcher = require('../workers/htmlfetcher');
 var fs = require('fs');
 
 var actions = {
   'POST': function(req, res) {
-
+    fs.appendFileSync(__dirname + '../test/testdata/sites.txt', req.url + '\n', 'utf-8');
+    res.end();
   },
   'GET': function(req, res) {
-    var html = "";
     fs.readFile(__dirname + "/public/index.html", 'utf-8', function(err, data) {
       if (err) {
         throw err;
@@ -26,10 +27,16 @@ var actions = {
 
 exports.handleRequest = function (req, res) {
   var action = req.method;
+
+  console.log(fs.createReadStream('http://www.google.com'));
+
   if (action) {
-    actions[action](req, res);
-  } else {
-    res.writeHead(404, null);
-    res.end();
-  }
+    if (fs.existsSync(req.url)) {
+      actions[action](req, res);
+    } else {
+      res.writeHead(404, null);
+      res.end();
+    }
+    
+  } 
 }; 

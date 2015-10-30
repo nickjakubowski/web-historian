@@ -39,13 +39,13 @@ exports.readListOfUrls = function(callback) {
 };
 
 exports.isUrlInList = function(url, callback) {
-  var urlArray = [];
   exports.readListOfUrls(function(urls){
     return callback(_.contains(urls, url));
   });
 };
 
-exports.addUrlToList = function() {
+exports.addUrlToList = function(url) {
+  
 };
 
 exports.isUrlArchived = function() {
